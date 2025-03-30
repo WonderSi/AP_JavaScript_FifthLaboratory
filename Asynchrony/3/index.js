@@ -34,7 +34,8 @@ function f4(x) {
             const result = x * 4;
             console.log(`f4(${x}) = ${result}`);
             resolve(result);
-        }, Math.floor(Math.random() * 1000));})
+        }, Math.floor(Math.random() * 1000));
+    })
 }
 
 function f5(x) {
@@ -89,14 +90,14 @@ function Fx(x, n) {
 
 function main() {
     console.log('Example 1: n = 2');
-    Fx(3,2)
+    Fx(3, 2)
         .then(() => {
             console.log('Example 2: n = 4');
-            return Fx(3,4);
+            return Fx(3, 4);
         })
         .then(() => {
             console.log('Example 3: n = 6');
-            return Fx(3,6);
+            return Fx(3, 6);
         })
         .then(() => {
             console.log('All examples completed');
