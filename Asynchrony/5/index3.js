@@ -60,49 +60,36 @@ function f6(x) {
 
 const functions = [f1, f2, f3, f4, f5, f6];
 
-function Fx(x, n) {
-    return new Promise((resolve, reject) => {
-        let currentResult = x;
-        let index = 0;
+async function Fx(x, n) {
+    let currentResult = x;
 
-        function nextStep() {
-            if (index >= n) {
-                console.log(`Результат ${n} шага: ${currentResult}`);
-                resolve(currentResult);
-                return;
-            }
-
-            functions[index](currentResult)
-                .then(result => {
-                    currentResult = result;
-                    index++;
-                    nextStep();
-                })
-                .catch(error => {
-                    console.log(`Результат ${n} шага: ${currentResult}`);
-                    reject(error);
-                });
+    try {
+        for (let i = 0; i < n; i++) {
+            currentResult = await functions[i](currentResult);
         }
-
-        nextStep();
-    })
+        console.log(`Result after ${n} steps: ${currentResult}`);
+        return currentResult;
+    } catch (error) {
+        console.error(`Ошибка после ${n} шага:`, error);
+        throw error;
+    }
 }
 
-function main() {
-    console.log('Example 1: n = 2');
-    Fx(3, 2)
-        .then(() => {
-            console.log('Example 2: n = 4');
-            return Fx(3, 4);
-        })
-        .then(() => {
-            console.log('Example 3: n = 6');
-            return Fx(3, 6);
-        })
-        .then(() => {
-            console.log('All examples completed');
-        })
-        .catch(error => console.error(error))
+async function main() {
+    try {
+        console.log('Example 1: n = 2');
+        await Fx(3, 2);
+
+        console.log('Example 2: n = 4');
+        await Fx(3, 4);
+
+        console.log('Example 3: n = 6');
+        await Fx(3, 6);
+
+        console.log('All examples completed');
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 
