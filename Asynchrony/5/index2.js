@@ -1,4 +1,3 @@
-// Асинхронные функции
 function readConfig(name) {
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -35,7 +34,6 @@ function readFile(path) {
     })
 }
 
-// Вызов функций
 async function main() {
     try {
         console.log('start');
