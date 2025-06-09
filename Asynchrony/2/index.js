@@ -1,4 +1,3 @@
-// Асинхронные функции
 function readConfig (name) {
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -31,7 +30,6 @@ function readFile (path) {
         }, Math.floor(Math.random() * 1000))
     })
 }
-// Вызов функций
 console.log('start')
 
 readConfig('myConfig')
